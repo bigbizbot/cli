@@ -27,7 +27,7 @@ export const deleteFile = async (filePath: string) => {
     }
 }
 
-export const giveExecutablePermissionsToFile = async (filePath: string): Promise<number> => await exec.exec(`chmod +x ${filePath}`, [], { silent: true })
+export const giveExecutablePermissionsToFile = async (filePath: string): Promise<number> => await exec.exec('chmod', ['+x', filePath], { silent: true })
 
 export const getCurrentTime = (): number => {
     return new Date().getTime();
@@ -60,8 +60,6 @@ export const checkIfEnvironmentVariableIsOmitted = (key: string): boolean => {
         'GPG_KEY',
         'CONDA',
         'AGENT_TOOLSDIRECTORY',
-        'GITHUB_WORKSPACE',
-        'GITHUB_ENV',
         'RUNNER_PERFLOG',
         'RUNNER_WORKSPACE',
         'RUNNER_TEMP',
@@ -71,7 +69,8 @@ export const checkIfEnvironmentVariableIsOmitted = (key: string): boolean => {
         'JOURNAL_STREAM',
         'DEPLOYMENT_BASEPATH',
         'VCPKG_INSTALLATION_ROOT',
-        'PERFLOG_LOCATION_SETTING'
+        'PERFLOG_LOCATION_SETTING',
+        'AZURE_CONFIG_DIR'
     ];
 
     const omitEnvironmentVariablesWithPrefix: string [] = [
